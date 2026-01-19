@@ -41,7 +41,6 @@ A modern podcast search application built with Next.js 14, featuring bilingual s
 
 3. Create a `.env.local` file in the root directory:
    ```env
-   API_BASE_URL=https://itunes.apple.com
    NEXT_PUBLIC_API_URL=http://localhost:3001
    ```
 

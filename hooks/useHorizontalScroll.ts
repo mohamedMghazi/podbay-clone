@@ -3,7 +3,7 @@ import { useRef, useCallback, useState, useEffect } from 'react';
 export const useHorizontalScroll = () => {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const [isLeftDisabled, setIsLeftDisabled] = useState(true);
-  const [isRightDisabled, setIsRightDisabled] = useState(true);
+  const [isRightDisabled, setIsRightDisabled] = useState(false);
 
   const checkScroll = useCallback(() => {
     if (!scrollContainerRef.current) return;
@@ -18,14 +18,16 @@ export const useHorizontalScroll = () => {
   const scrollLeft = useCallback(() => {
     if (scrollContainerRef.current) {
       scrollContainerRef.current.scrollBy({ left: -600, behavior: 'smooth' });
+      setTimeout(checkScroll, 100);
     }
-  }, []);
+  }, [checkScroll]);
 
   const scrollRight = useCallback(() => {
     if (scrollContainerRef.current) {
       scrollContainerRef.current.scrollBy({ left: 600, behavior: 'smooth' });
+      setTimeout(checkScroll, 100);
     }
-  }, []);
+  }, [checkScroll]);
 
   useEffect(() => {
     const container = scrollContainerRef.current;

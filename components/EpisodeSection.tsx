@@ -22,7 +22,12 @@ export const EpisodeSection: React.FC<EpisodeSectionProps> = ({ title, episodes 
   } = useHorizontalScroll();
 
   useEffect(() => {
-    checkScroll();
+    if (layout === 'scroll') {
+      const timer = setTimeout(() => {
+        checkScroll();
+      }, 50);
+      return () => clearTimeout(timer);
+    }
   }, [episodes, layout, checkScroll]);
 
   if (episodes.length === 0) return null;
